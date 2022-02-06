@@ -9,26 +9,31 @@ import (
 func main() {
 	fmt.Println("Server starting..")
 
-	http.HandleFunc("/", HelloWorld)
+	http.HandleFunc("/", helloWorld)
 	http.HandleFunc("/people", getAllPeople)
+	http.HandleFunc("/test", test)
 	http.ListenAndServe(":8080", nil)
 }
 
-func HelloWorld(w http.ResponseWriter, r *http.Request) {
+func helloWorld(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hello World!")
 }
 
 func getAllPeople(w http.ResponseWriter, r *http.Request) {
-	people := GetPeopleData()
+	people := getPeopleData()
 	json.NewEncoder(w).Encode(people)
 }
 
-func GetPeopleData() []Person {
+func getPeopleData() []Person {
 	fakeData := []Person{
 		Person{FirstName: "Jacob"},
 		Person{FirstName: "Andrew"},
 	}
 	return fakeData
+}
+
+func test(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "test succeeded at /test")
 }
 
 type Person struct {

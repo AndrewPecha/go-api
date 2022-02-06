@@ -24,7 +24,10 @@ func getAllPeople(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetPeopleData() []Person {
-	fakeData := []Person{Person{FirstName: "Jacob"}}
+	fakeData := []Person{
+		Person{FirstName: "Jacob"},
+		Person{FirstName: "Andrew"},
+	}
 	return fakeData
 }
 
